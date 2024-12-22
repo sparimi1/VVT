@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Voice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        textarea {
+            width: 80%;
+            height: 100px;
+            margin: 20px 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text-to-Voice App</h1>
+    <textarea id="text-input" placeholder="Type something here..."></textarea><br>
+    <button onclick="speakText()">Speak</button>
+
+    <script>
+        function speakText() {
+            const text = document.getElementById('text-input').value;
+            if (!text) {
+                alert("Please enter some text!");
+                return;
+            }
+
+            // Initialize the Speech Synthesis API
+            const speech = new SpeechSynthesisUtterance();
+            speech.text = text;
+            speech.lang = 'en-US';
+            speech.pitch = 1; // Adjust pitch (0 to 2, default 1)
+            speech.rate = 1;  // Adjust speed (0.1 to 10, default 1)
+            window.speechSynthesis.speak(speech);
+        }
+    </script>
+</body>
+</html>
